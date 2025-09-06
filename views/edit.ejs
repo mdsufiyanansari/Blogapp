@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-6"
+  >
+    <div
+      class="w-full max-w-lg bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl border border-gray-100 p-8"
+    >
+      <!-- Heading -->
+      <h2 class="text-2xl font-bold text-gray-700 mb-6 text-center">
+        ✏️ Edit Your Post
+      </h2>
+
+      <!-- Form -->
+      <form action="/update/<%= post._id %>" method="post" class="space-y-5">
+        <!-- Textarea -->
+        <textarea
+          name="content"
+          placeholder="🌟 What's on your mind today?"
+          class="w-full p-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400 resize-none transition"
+          rows="4"
+        >
+<%= post.content %></textarea
+        >
+
+        <!-- Buttons -->
+        <div class="flex items-center justify-between space-x-4">
+          <a
+            href="/profile"
+            class="w-1/2 text-center bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium py-2.5 rounded-xl transition shadow-sm"
+          >
+            ❌ Cancel
+          </a>
+          <button
+            type="submit"
+            class="w-1/2 bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 hover:opacity-90 text-white font-semibold py-2.5 rounded-xl shadow-md transition"
+          >
+            ✅ Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

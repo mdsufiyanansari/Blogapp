@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: url("https://www.surveylegend.com/wordpress/wp-content/themes/sage/resources/images/img/modal/upgrade-file-upload.png")
+          no-repeat center center/cover;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center min-h-screen relative">
+    <!-- Overlay -->
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-indigo-900/70 via-purple-900/50 to-pink-900/70"
+    ></div>
+
+    <!-- Card -->
+    <div
+      class="relative w-full max-w-lg bg-white/20 backdrop-blur-xl rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.15)] border border-white/30 p-10"
+    >
+      <!-- Heading -->
+      <h2
+        class="text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text drop-shadow"
+      >
+        Upload Profile Picture
+      </h2>
+
+      <!-- Form -->
+      <form
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        class="space-y-6"
+      >
+        <!-- File Upload Box -->
+        <label
+          for="file"
+          class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-purple-400/60 rounded-2xl cursor-pointer bg-white/30 hover:bg-white/40 transition group"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              class="w-12 h-12 mb-3 text-purple-400 group-hover:text-purple-500 transition"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6h.1a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              />
+            </svg>
+            <p class="mb-2 text-sm text-gray-700">
+              <span class="font-semibold">Click to upload</span> or drag & drop
+            </p>
+            <p class="text-xs text-gray-600">PNG, JPG, JPEG </p>
+          </div>
+          <input id="file" type="file" name="image" class="hidden" required />
+        </label>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold shadow-lg hover:opacity-90 transition transform hover:scale-[1.02]"
+        >
+          ✨ Upload Image
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
