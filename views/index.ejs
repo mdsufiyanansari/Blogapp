@@ -23,7 +23,24 @@
     await OneSignal.init({
       appId: "e269da3f-455c-4609-9285-fe3efefbae18",
       subdomainName: "blogapp",
-      notifyButton: { enable: true }
+      notifyButton: { enable: true },
+
+      // ✅ Auto-prompt enable
+      promptOptions: {
+        slidedown: {
+          prompts: [
+            {
+              type: "push",
+              autoPrompt: true,
+              text: {
+                actionMessage: "Get updates from our Blog 🚀",
+                acceptButton: "Allow",
+                cancelButton: "No Thanks",
+              },
+            },
+          ],
+        },
+      },
     });
 
     console.log("👉 OneSignal initialized!");
@@ -36,13 +53,11 @@
     const playerId = await OneSignal.User.PushSubscription.id;
     console.log("✅ Player ID:", playerId);
 
-    // Auto-prompt
-    if (!isEnabled) {
-      const permission = await OneSignal.Notifications.requestPermission();
-      console.log("User choice:", permission);
-    }
+    // (यहाँ अब manual requestPermission की ज़रूरत नहीं है,
+    // क्योंकि autoPrompt ऊपर से already handle कर रहा है)
   });
 </script>
+
 
 
 
