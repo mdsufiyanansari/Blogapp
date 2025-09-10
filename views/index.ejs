@@ -7,60 +7,40 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: url("https://c8.alamy.com/comp/2CA3RKR/register-word-in-splashs-background-2CA3RKR.jpg")
+      background: url("https://img.freepik.com/free-photo/office-desk-workspace-bright-color-yellow-background_169016-38713.jpg")
         no-repeat center center/cover;
     }
   </style>
 
-<!-- ✅ OneSignal SDK -->
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+  <!-- ✅ OneSignal SDK v16 -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 
-<script defer>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    console.log("👉 Custom script run हुआ!");
+  <script defer>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      console.log("👉 SDK Loaded!");
 
-    await OneSignal.init({
-      appId: "e269da3f-455c-4609-9285-fe3efefbae18",
-      subdomainName: "blogapp",
-      notifyButton: { enable: true },
+      await OneSignal.init({
+        appId: "e269da3f-455c-4609-9285-fe3efefbae18",
+        notifyButton: { enable: true }
+      });
 
-      // ✅ Auto-prompt enable
-      promptOptions: {
-        slidedown: {
-          prompts: [
-            {
-              type: "push",
-              autoPrompt: true,
-              text: {
-                actionMessage: "Get updates from our Blog 🚀",
-                acceptButton: "Allow",
-                cancelButton: "No Thanks",
-              },
-            },
-          ],
-        },
-      },
+      console.log("👉 OneSignal initialized!");
+
+      // ✅ Auto permission popup
+      const perm = await OneSignal.Notifications.requestPermission();
+      console.log("User Permission:", perm);
+
+      // ✅ Player ID check
+      OneSignal.User.PushSubscription.addEventListener("change", async (sub) => {
+        if (sub.id) {
+          console.log("✅ Player ID:", sub.id);
+        } else {
+          console.log("❌ अभी subscribe नहीं हुआ");
+        }
+      });
     });
-
-    console.log("👉 OneSignal initialized!");
-
-    // Permission चेक
-    const isEnabled = await OneSignal.User.PushSubscription.optedIn;
-    console.log("Push Enabled? ", isEnabled);
-
-    // Player ID चेक
-    const playerId = await OneSignal.User.PushSubscription.id;
-    console.log("✅ Player ID:", playerId);
-
-    // (यहाँ अब manual requestPermission की ज़रूरत नहीं है,
-    // क्योंकि autoPrompt ऊपर से already handle कर रहा है)
-  });
-</script>
-
-
-
-
+  </script>
 </head>
 
 <body class="flex items-center justify-center min-h-screen relative">
