@@ -7,7 +7,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
 const postRoutes = require("./routes/post");
-const notifyRoutes = require("./views/notify");
+const notifyRoutes = require("./routes/notify");
 
 
 
