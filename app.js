@@ -7,6 +7,9 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
 const postRoutes = require("./routes/post");
+const notifyRoutes = require("./views/notify");
+
+
 
 const app = express();
 
@@ -19,6 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
+
+app.use("/api", notifyRoutes);
 
 // Routes
 app.use("/", authRoutes);

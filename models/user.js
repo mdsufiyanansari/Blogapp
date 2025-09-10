@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
     default: "default.png",
 
   },
+    playerId: { type: String },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "post" }],
 });
 
