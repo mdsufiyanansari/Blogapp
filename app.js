@@ -9,8 +9,6 @@ const profileRoutes = require("./routes/profile");
 const postRoutes = require("./routes/post");
 const notifyRoutes = require("./routes/notify");
 
-
-
 const app = express();
 
 // DB connect
@@ -30,8 +28,14 @@ app.use("/", authRoutes);
 app.use("/", profileRoutes);
 app.use("/", postRoutes);
 
+// ✅ OneSignal SDK worker files serve from root
+app.get("/OneSignalSDKWorker.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "OneSignalSDKWorker.js"));
+});
 
-
+app.get("/OneSignalSDKUpdaterWorker.js", (req, res) => {
+  res.sendFile(path.join(__dirname, "OneSignalSDKUpdaterWorker.js"));
+});
 
 // Error handler
 app.use((err, req, res, next) => {
